@@ -521,26 +521,7 @@
           class="bg-light-blue-10 text-white rounded-borders"
           style="height: 50px"
         >
-          <q-tabs v-model="activeTab" class="tabs">
-            <q-tab name="user" @click="admin = false">
-              {{ $t("index.user_login") }}
-              <q-tooltip
-                content-class="bg-amber text-black shadow-4"
-                :offset="[5, 5]"
-                content-style="font-size: 12px"
-                >{{ $t("index.user_login") }}</q-tooltip
-              >
-            </q-tab>
-            <q-tab name="admin" @click="admin = true">
-              {{ $t("index.admin_login") }}
-              <q-tooltip
-                content-class="bg-amber text-black shadow-4"
-                :offset="[5, 5]"
-                content-style="font-size: 12px"
-                >{{ $t("index.admin_login") }}</q-tooltip
-              >
-            </q-tab>
-          </q-tabs>
+          <div>{{ $t("index.user_login") }}</div>
           <q-space />
           <q-btn dense flat icon="close" v-close-popup>
             <q-tooltip
@@ -552,36 +533,7 @@
           </q-btn>
         </q-bar>
         <q-card-section class="q-pt-md">
-          <template v-if="admin">
-            <q-input
-              dense
-              outlined
-              square
-              :label="$t('index.admin_name')"
-              v-model="adminlogin.name"
-              autofocus
-              @keyup.enter="adminLogin()"
-            />
-            <q-input
-              dense
-              outlined
-              square
-              :label="$t('index.password')"
-              :type="isPwd ? 'password' : 'text'"
-              v-model="adminlogin.password"
-              @keyup.enter="adminLogin()"
-              style="margin-top: 5px"
-            >
-              <template v-slot:append>
-                <q-icon
-                  :name="isPwd ? 'visibility_off' : 'visibility'"
-                  class="cursor-pointer"
-                  @click="isPwd = !isPwd"
-                />
-              </template>
-            </q-input>
-          </template>
-          <template v-if="!admin">
+          <template>
             <q-input
               dense
               outlined
@@ -622,7 +574,7 @@
               color="primary"
               :label="$t('index.login')"
               style="font-size: 16px; margin: 0 8px; width: 100%"
-              @click="admin ? adminLogin() : Login()"
+              @click="Login()"
             />
           </template>
           <div class="q-mx-auto">
